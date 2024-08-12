@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma de Estudo</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('imagens/tecnicas-de-estudo-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            flex-direction: column; /* Alterado para incluir a navbar */
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .schedule-container {
+            max-width: 1400px;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 60px; /* Adicionado para dar espaço para a navbar */
+        }
+
+        .schedule-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .day-column {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-height: 200px;
+            position: relative;
+        }
+
+        .day-column h3 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        .day-content {
+            min-height: 150px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .subject-pool {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .subject-pool h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subject {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: grab;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+            color: white;
+            display: inline-block;
+            min-width: 80px;
+            position: relative;
+            background-color: #4CAF50; /* Cor padrão */
+        }
+
+        .subject1 { background-color: #4CAF50; } /* Matemática */
+        .subject2 { background-color: #2196F3; } /* Física */
+        .subject3 { background-color: #FF5722; } /* Química */
+        .subject4 { background-color: #FFC107; } /* História */
+        .subject5 { background-color: #9C27B0; } /* Geografia */
+        .subject6 { background-color: #00BCD4; } /* Biologia */
+        .subject7 { background-color: #E91E63; } /* Filosofia */
+        .subject8 { background-color: #673AB7; } /* Sociologia */
+        .subject9 { background-color: #3F51B5; } /* História do Brasil */
+        .subject10 { background-color: #009688; } /* Inglês */
+        .subject11 { background-color: #FF9800; } /* Literatura */
+        .subject12 { background-color: #795548; } /* Gramática */
+        .subject13 { background-color: #8BC34A; } /* Interpretação Textual */
+
+        .subject:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+
+        .delete-button {
+            background-color: rgba(244, 67, 54, 0.8); /* Vermelho opaco */
+            color: white;
+            border: none;
+            padding: 3px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            display: none; /* Escondido por padrão */
+        }
+
+        .day-content .subject:hover .delete-button {
+            display: block; /* Exibir ao passar o mouse dentro dos dias */
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html">Início</a>
+    <a href="materias.html">Matérias</a>
+    <a href="anotacoes.html">Anotações</a>
+    <a href="Cronograma.html">Cronograma</a>
+</div>
+
+<div class="schedule-container">
+    <h2>Cronograma Semanal</h2>
+    <div class="schedule-grid">
+        <div class="day-column" id="monday">
+            <h3>Segunda-feira</h3>
+            <div class="day-content" id="day-monday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+        <div class="day-column" id="tuesday">
+            <h3>Terça-feira</h3>
+            <div class="day-content" id="day-tuesday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+        <div class="day-column" id="wednesday">
+            <h3>Quarta-feira</h3>
+            <div class="day-content" id="day-wednesday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+        <div class="day-column" id="thursday">
+            <h3>Quinta-feira</h3>
+            <div class="day-content" id="day-thursday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+        <div class="day-column" id="friday">
+            <h3>Sexta-feira</h3>
+            <div class="day-content" id="day-friday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+        <div class="day-column" id="saturday">
+            <h3>Sábado</h3>
+            <div class="day-content" id="day-saturday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+        <div class="day-column" id="sunday">
+            <h3>Domingo</h3>
+            <div class="day-content" id="day-sunday" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+    </div>
+
+    <div class="subject-pool">
+        <h3>Matérias</h3>
+        <div class="subject subject1" draggable="true" ondragstart="drag(event)" id="subject1">
+            Matemática
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject2" draggable="true" ondragstart="drag(event)" id="subject2">
+            Física
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject3" draggable="true" ondragstart="drag(event)" id="subject3">
+            Química
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject4" draggable="true" ondragstart="drag(event)" id="subject4">
+            História
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject5" draggable="true" ondragstart="drag(event)" id="subject5">
+            Geografia
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject6" draggable="true" ondragstart="drag(event)" id="subject6">
+            Biologia
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject7" draggable="true" ondragstart="drag(event)" id="subject7">
+            Filosofia
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject8" draggable="true" ondragstart="drag(event)" id="subject8">
+            Sociologia
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject9" draggable="true" ondragstart="drag(event)" id="subject9">
+            História do Brasil
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject10" draggable="true" ondragstart="drag(event)" id="subject10">
+            Inglês
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject11" draggable="true" ondragstart="drag(event)" id="subject11">
+            Literatura
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject12" draggable="true" ondragstart="drag(event)" id="subject12">
+            Gramática
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+        <div class="subject subject13" draggable="true" ondragstart="drag(event)" id="subject13">
+            Interpretação Textual
+            <button class="delete-button" onclick="deleteSubject(event)">X</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var nodeCopy = document.getElementById(data).cloneNode(true);
+        ev.target.appendChild(nodeCopy);
+        saveSchedule(); // Salva o cronograma após o drop
+    }
+
+    function deleteSubject(ev) {
+        ev.target.parentElement.remove();
+        saveSchedule(); // Salva o cronograma após excluir uma matéria
+    }
+
+    function saveSchedule() {
+        const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        const schedule = {};
+
+        days.forEach(day => {
+            const dayContent = document.getElementById(`day-${day}`);
+            schedule[day] = Array.from(dayContent.children).map(subject => subject.id);
+        });
+
+        localStorage.setItem('schedule', JSON.stringify(schedule));
+    }
+
+    function loadSchedule() {
+        const schedule = JSON.parse(localStorage.getItem('schedule'));
+
+        if (schedule) {
+            Object.keys(schedule).forEach(day => {
+                const dayContent = document.getElementById(`day-${day}`);
+                schedule[day].forEach(subjectId => {
+                    const subject = document.getElementById(subjectId);
+                    if (subject) {
+                        dayContent.appendChild(subject.cloneNode(true));
+                    }
+                });
+            });
+        }
+    }
+
+    window.onload = function() {
+        loadSchedule(); // Carrega o cronograma ao abrir a página
+    };
+
+    window.onbeforeunload = function() {
+        saveSchedule(); // Salva o cronograma antes de sair da página
+    };
+</script>
+
+</body>
+</html>
+

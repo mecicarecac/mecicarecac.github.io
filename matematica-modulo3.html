@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Função para salvar o estado no localStorage
+            function saveCheckboxState(id) {
+                const checkbox = document.getElementById(id);
+                localStorage.setItem(id, checkbox.checked);
+            }
+
+            // Função para carregar o estado do localStorage
+            function loadCheckboxState(id) {
+                const checked = localStorage.getItem(id) === 'true';
+                document.getElementById(id).checked = checked;
+            }
+
+            // IDs das caixas de seleção
+            const checkboxIds = [
+                'check-aula-1.0', 'check-exercicio-1.0', 'check-resumo-1.0', 'check-revisao-1.0',
+                'check-aula-2.0', 'check-exercicio-2.0', 'check-resumo-2.0', 'check-revisao-2.0',
+                // ... (adicione todos os IDs das caixas de seleção aqui)
+            ];
+
+            // Carregar o estado das caixas de seleção
+            checkboxIds.forEach(id => loadCheckboxState(id));
+
+            // Adicionar event listeners para salvar o estado ao clicar
+            checkboxIds.forEach(id => {
+                document.getElementById(id).addEventListener('change', function() {
+                    saveCheckboxState(id);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Início</a>
+        <a href="materias.html">Matérias</a>
+        <a href="anotacoes.html">Anotações</a>
+        <a href="Cronograma.html">Cronograma</a>
+    </div>
+    
+    <div class="container">
+        <h1>Modulo 3</h1>
+        <div class="material-content">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tópico</th>
+                        <th>Aula</th>
+                        <th>Exercícios</th>
+                        <th>Resumo</th>
+                        <th>Revisão</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Adicione as linhas de tópicos aqui -->
+                    <tr>
+                        <td>Sistemas Métricos e Base Decimal</td>
+                        <td><input type="checkbox" id="check-aula-1"></td>
+                        <td><input type="checkbox" id="check-exercicio-1"></td>
+                        <td><input type="checkbox" id="check-resumo-1"></td>
+                        <td><input type="checkbox" id="check-revisao-1"></td>
+                    </tr>
+                    <tr>
+                        <td>Noções Primitivas de Geometria Plana</td>
+                        <td><input type="checkbox" id="check-aula-2"></td>
+                        <td><input type="checkbox" id="check-exercicio-2"></td>
+                        <td><input type="checkbox" id="check-resumo-2"></td>
+                        <td><input type="checkbox" id="check-revisao-2"></td>
+                    </tr>
+                    <tr>
+                        <td>Triângulos</td>
+                        <td><input type="checkbox" id="check-aula-3"></td>
+                        <td><input type="checkbox" id="check-exercicio-3"></td>
+                        <td><input type="checkbox" id="check-resumo-3"></td>
+                        <td><input type="checkbox" id="check-revisao-3"></td>
+                    </tr>
+                    <tr>
+                        <td>Pontos Notáveis de um Triângulo</td>
+                        <td><input type="checkbox" id="check-aula-4"></td>
+                        <td><input type="checkbox" id="check-exercicio-4"></td>
+                        <td><input type="checkbox" id="check-resumo-4"></td>
+                        <td><input type="checkbox" id="check-revisao-4"></td>
+                    </tr>
+                    <tr>
+                        <td>Semelhança de Triângulos e Teorema de Tales</td>
+                        <td><input type="checkbox" id="check-aula-5"></td>
+                        <td><input type="checkbox" id="check-exercicio-5"></td>
+                        <td><input type="checkbox" id="check-resumo-5"></td>
+                        <td><input type="checkbox" id="check-revisao-5"></td>
+                    </tr>
+                    <tr>
+                        <td>Quadriláteros</td>
+                        <td><input type="checkbox" id="check-aula-6"></td>
+                        <td><input type="checkbox" id="check-exercicio-6"></td>
+                        <td><input type="checkbox" id="check-resumo-6"></td>
+                        <td><input type="checkbox" id="check-revisao-6"></td>
+                    </tr>
+                    <tr>
+                        <td>Poligonos</td>
+                        <td><input type="checkbox" id="check-aula-7"></td>
+                        <td><input type="checkbox" id="check-exercicio-7"></td>
+                        <td><input type="checkbox" id="check-resumo-7"></td>
+                        <td><input type="checkbox" id="check-revisao-7"></td>
+                    </tr>
+                    <tr>
+                        <td>Triângulo Retângulo</td>
+                        <td><input type="checkbox" id="check-aula-8"></td>
+                        <td><input type="checkbox" id="check-exercicio-8"></td>
+                        <td><input type="checkbox" id="check-resumo-8"></td>
+                        <td><input type="checkbox" id="check-revisao-8"></td>
+                    </tr>
+                    <tr>
+                        <td>Lei dos Senos e Cossenos</td>
+                        <td><input type="checkbox" id="check-aula-9"></td>
+                        <td><input type="checkbox" id="check-exercicio-9"></td>
+                        <td><input type="checkbox" id="check-resumo-9"></td>
+                        <td><input type="checkbox" id="check-revisao-9"></td>
+                    </tr>
+                    <tr>
+                        <td>Areas de Poligonos</td>
+                        <td><input type="checkbox" id="check-aula-10"></td>
+                        <td><input type="checkbox" id="check-exercicio-10"></td>
+                        <td><input type="checkbox" id="check-resumo-10"></td>
+                        <td><input type="checkbox" id="check-revisao-10"></td>
+                    </tr>
+                    <tr>
+                        <td>Circulos</td>
+                        <td><input type="checkbox" id="check-aula-11"></td>
+                        <td><input type="checkbox" id="check-exercicio-11"></td>
+                        <td><input type="checkbox" id="check-resumo-11"></td>
+                        <td><input type="checkbox" id="check-revisao-11"></td>
+                    </tr>
+                    <tr>
+                        <td>Angulos na Circunferência</td>
+                        <td><input type="checkbox" id="check-aula-12"></td>
+                        <td><input type="checkbox" id="check-exercicio-12"></td>
+                        <td><input type="checkbox" id="check-resumo-12"></td>
+                        <td><input type="checkbox" id="check-revisao-12"></td>
+                    </tr>
+                    <tr>
+                        <td>Geometria de Posição</td>
+                        <td><input type="checkbox" id="check-aula-13"></td>
+                        <td><input type="checkbox" id="check-exercicio-13"></td>
+                        <td><input type="checkbox" id="check-resumo-13"></td>
+                        <td><input type="checkbox" id="check-revisao-13"></td>
+                    </tr>
+                    <tr>
+                        <td>Poliedros</td>
+                        <td><input type="checkbox" id="check-aula-14"></td>
+                        <td><input type="checkbox" id="check-exercicio-14"></td>
+                        <td><input type="checkbox" id="check-resumo-14"></td>
+                        <td><input type="checkbox" id="check-revisao-14"></td>
+                    </tr>
+                    <tr>
+                        <td>Prismas</td>
+                        <td><input type="checkbox" id="check-aula-15"></td>
+                        <td><input type="checkbox" id="check-exercicio-15"></td>
+                        <td><input type="checkbox" id="check-resumo-15"></td>
+                        <td><input type="checkbox" id="check-revisao-15"></td>
+                    </tr>
+                    <tr>
+                        <td>Pirâmides</td>
+                        <td><input type="checkbox" id="check-aula-16"></td>
+                        <td><input type="checkbox" id="check-exercicio-16"></td>
+                        <td><input type="checkbox" id="check-resumo-16"></td>
+                        <td><input type="checkbox" id="check-revisao-16"></td>
+                    </tr>
+                    <tr>
+                        <td>Cilindros</td>
+                        <td><input type="checkbox" id="check-aula-17"></td>
+                        <td><input type="checkbox" id="check-exercicio-17"></td>
+                        <td><input type="checkbox" id="check-resumo-17"></td>
+                        <td><input type="checkbox" id="check-revisao-17"></td>
+                    </tr>
+                    <tr>
+                        <td>Cones</td>
+                        <td><input type="checkbox" id="check-aula-18"></td>
+                        <td><input type="checkbox" id="check-exercicio-18"></td>
+                        <td><input type="checkbox" id="check-resumo-18"></td>
+                        <td><input type="checkbox" id="check-revisao-18"></td>
+                    </tr>
+                    <tr>
+                        <td>Esferas</td>
+                        <td><input type="checkbox" id="check-aula-19"></td>
+                        <td><input type="checkbox" id="check-exercicio-19"></td>
+                        <td><input type="checkbox" id="check-resumo-19"></td>
+                        <td><input type="checkbox" id="check-revisao-19"></td>
+                    </tr>
+                    <tr>
+                        <td>Inscrição de Sólidos</td>
+                        <td><input type="checkbox" id="check-aula-20"></td>
+                        <td><input type="checkbox" id="check-exercicio-20"></td>
+                        <td><input type="checkbox" id="check-resumo-20"></td>
+                        <td><input type="checkbox" id="check-revisao-20"></td>
+                    </tr>
+                    <tr>
+                        <td>Trigonometria no Triângulo Retângulo</td>
+                        <td><input type="checkbox" id="check-aula-21"></td>
+                        <td><input type="checkbox" id="check-exercicio-21"></td>
+                        <td><input type="checkbox" id="check-resumo-21"></td>
+                        <td><input type="checkbox" id="check-revisao-21"></td>
+                    </tr>
+                    <tr>
+                        <td>Arcos e Ciclo Trigonométrico</td>
+                        <td><input type="checkbox" id="check-aula-1"></td>
+                        <td><input type="checkbox" id="check-exercicio-1"></td>
+                        <td><input type="checkbox" id="check-resumo-1"></td>
+                        <td><input type="checkbox" id="check-revisao-1"></td>
+                    </tr>
+                    <tr>
+                        <td>Função Seno e Cosseno</td>
+                        <td><input type="checkbox" id="check-aula-2"></td>
+                        <td><input type="checkbox" id="check-exercicio-2"></td>
+                        <td><input type="checkbox" id="check-resumo-2"></td>
+                        <td><input type="checkbox" id="check-revisao-2"></td>
+                    </tr>
+                    <tr>
+                        <td>Função Tangente e Cotangente</td>
+                        <td><input type="checkbox" id="check-aula-3"></td>
+                        <td><input type="checkbox" id="check-exercicio-3"></td>
+                        <td><input type="checkbox" id="check-resumo-3"></td>
+                        <td><input type="checkbox" id="check-revisao-3"></td>
+                    </tr>
+                    <tr>
+                        <td>Função Secante e Cossecante</td>
+                        <td><input type="checkbox" id="check-aula-4"></td>
+                        <td><input type="checkbox" id="check-exercicio-4"></td>
+                        <td><input type="checkbox" id="check-resumo-4"></td>
+                        <td><input type="checkbox" id="check-revisao-4"></td>
+                    </tr>
+                    <tr>
+                        <td>Função Soma e Fatoração</td>
+                        <td><input type="checkbox" id="check-aula-5"></td>
+                        <td><input type="checkbox" id="check-exercicio-5"></td>
+                        <td><input type="checkbox" id="check-resumo-5"></td>
+                        <td><input type="checkbox" id="check-revisao-5"></td>
+                    </tr>
+                    <tr>
+                        <td>Equações e Inequações Trigonométricas</td>
+                        <td><input type="checkbox" id="check-aula-6"></td>
+                        <td><input type="checkbox" id="check-exercicio-6"></td>
+                        <td><input type="checkbox" id="check-resumo-6"></td>
+                        <td><input type="checkbox" id="check-revisao-6"></td>
+                    </tr>
+                    <tr>
+                        <td>Sistema Cartesiano e Ponto</td>
+                        <td><input type="checkbox" id="check-aula-7"></td>
+                        <td><input type="checkbox" id="check-exercicio-7"></td>
+                        <td><input type="checkbox" id="check-resumo-7"></td>
+                        <td><input type="checkbox" id="check-revisao-7"></td>
+                    </tr>
+                    <tr>
+                        <td>Estudo Analitico da Reta</td>
+                        <td><input type="checkbox" id="check-aula-8"></td>
+                        <td><input type="checkbox" id="check-exercicio-8"></td>
+                        <td><input type="checkbox" id="check-resumo-8"></td>
+                        <td><input type="checkbox" id="check-revisao-8"></td>
+                    </tr>
+                    <tr>
+                        <td>Circunferência</td>
+                        <td><input type="checkbox" id="check-aula-9"></td>
+                        <td><input type="checkbox" id="check-exercicio-9"></td>
+                        <td><input type="checkbox" id="check-resumo-9"></td>
+                        <td><input type="checkbox" id="check-revisao-9"></td>
+                    </tr>
+                    <tr>
+                        <td>Posições Relativas à Circunferência</td>
+                        <td><input type="checkbox" id="check-aula-10"></td>
+                        <td><input type="checkbox" id="check-exercicio-10"></td>
+                        <td><input type="checkbox" id="check-resumo-10"></td>
+                        <td><input type="checkbox" id="check-revisao-10"></td>
+                    </tr>
+                    <tr>
+                        <td>Cônicas</td>
+                        <td><input type="checkbox" id="check-aula-11"></td>
+                        <td><input type="checkbox" id="check-exercicio-11"></td>
+                        <td><input type="checkbox" id="check-resumo-11"></td>
+                        <td><input type="checkbox" id="check-revisao-11"></td>
+                    </tr>
+                    <tr>
+                        <td>Polinomios 1</td>
+                        <td><input type="checkbox" id="check-aula-12"></td>
+                        <td><input type="checkbox" id="check-exercicio-12"></td>
+                        <td><input type="checkbox" id="check-resumo-12"></td>
+                        <td><input type="checkbox" id="check-revisao-12"></td>
+                    </tr>
+                    <tr>
+                        <td>Polinomios 2</td>
+                        <td><input type="checkbox" id="check-aula-13"></td>
+                        <td><input type="checkbox" id="check-exercicio-13"></td>
+                        <td><input type="checkbox" id="check-resumo-13"></td>
+                        <td><input type="checkbox" id="check-revisao-13"></td>
+                    </tr>
+                    <tr>
+                        <td>Equações Polinomiais</td>
+                        <td><input type="checkbox" id="check-aula-14"></td>
+                        <td><input type="checkbox" id="check-exercicio-14"></td>
+                        <td><input type="checkbox" id="check-resumo-14"></td>
+                        <td><input type="checkbox" id="check-revisao-14"></td>
+                    </tr>
+                    <!-- Continue com os outros tópicos de maneira semelhante -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Restaura o estado dos checkboxes ao carregar a página
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                const checked = localStorage.getItem(checkbox.id) === 'true';
+                checkbox.checked = checked;
+            });
+
+            // Salva o estado dos checkboxes no LocalStorage ao mudar
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
